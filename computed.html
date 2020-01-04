@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Computed</title>
+
+
+</head>
+<body>
+<div id="root">
+    <h1>All tasks</h1>
+ <ul>
+     <li v-for="task in tasks"  v-text="task.description"></li>
+ </ul>
+    <h1>Incomplete tasks</h1>
+    <ul>
+        <li v-for="task in incompleteTasks"  v-text="task.description"></li>
+    </ul>
+</div>
+
+<script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
+
+<script>
+
+    let app=new Vue({
+
+        el:'#root',
+        data:{
+       tasks:[
+           {description:'Go to the store',completed:true},
+           {description:'Finish screencast',completed:false},
+           {description:'Make donation',completed:false},
+           {description:'Clear inbox',completed:false},
+           {description:'Make dinner',completed:false},
+           {description:'Clean room',completed:true}
+
+       ]
+        },
+
+        computed:{
+           incompleteTasks(){
+               return this.tasks.filter(task => ! task.completed);
+           }
+        },
+        methods:{
+
+        }
+
+
+    });
+
+
+
+</script>
+</body>
+</html>
